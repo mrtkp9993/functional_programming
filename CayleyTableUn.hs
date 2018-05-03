@@ -15,8 +15,10 @@ instance Show CayleyTable where
   show (CayleyTable x) = intercalate "\n" $ map show x
 
 cayleyTableUn :: Int -> CayleyTable
-cayleyTableUn n = CayleyTable [[i * j `mod` n | i <- un] | j <- un]
-  where un = coprimes n
+cayleyTableUn n
+  | n > 1     = CayleyTable [[i * j `mod` n | i <- un] | j <- un]
+  | otherwise = error "n must be greater than 1."
+      where un = coprimes n
 
 main = do
   putStrLn "Cayley Table for U(10)"
