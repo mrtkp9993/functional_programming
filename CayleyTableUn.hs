@@ -6,13 +6,13 @@ Source: Gallian, Contemporary Abstract Algebra.
 -}
 module CayleyTableUn where
 
-import Data.List (intercalate)
+import Data.List (intercalate, intersperse)
 import Euler_Totient (coprimes)
 
 data CayleyTable = CayleyTable [[Int]]
 
 instance Show CayleyTable where
-  show (CayleyTable x) = intercalate "\n" $ map show x
+  show (CayleyTable x) = intercalate "\n" $ map (intersperse '|' . (=<<) show) x
 
 cayleyTableUn :: Int -> CayleyTable
 cayleyTableUn n
