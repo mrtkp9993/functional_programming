@@ -3,6 +3,7 @@
 
 module RockPaperScissors where
 
+import Control.Monad
 import System.Random
 
 data Move = Rock | Paper | Scissors deriving (Show, Enum, Read)
@@ -30,7 +31,7 @@ score ord = case ord of
   LT -> putStrLn "Computer won!"
   GT -> putStrLn "You won!"
 
-main = do
+main = forever $ do
   putStrLn "Choose your move (Rock/Paper/Scissors): "
   player <- input
   putStrLn ("Your choice is: " ++ show (player))
