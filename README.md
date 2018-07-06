@@ -7,3 +7,4 @@
 * Hamming.hs: Hamming distance between two strings, [Wiki](https://www.wikiwand.com/en/Hamming_distance).
 * Quicksort.hs: Quicksort algorithm implementation, [Wiki](https://www.wikiwand.com/en/Quicksort).
 * NumberTheory.hs: Number-theoric functions.
+* RockPaperScissors.hs: Rock-Paper-Scissors game.
