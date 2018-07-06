@@ -1,8 +1,10 @@
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE UndecidableInstances #-}
 
 module RockPaperScissors where
 
+import Control.Exception
 import Control.Monad
 import System.Random
 
@@ -19,6 +21,8 @@ instance (Eq Move) => Ord Move where
   (<=)  x y = x == y || elem (x, y) [(Rock, Paper),(Paper, Scissors),
                                      (Scissors, Rock)]
 
+data MoveError = ParseError deriving (Show, Eq, Read)
+
 input :: IO Move
 input = fmap read getLine
 
@@ -34,7 +38,13 @@ score ord = case ord of
 main = forever $ do
   putStrLn "Choose your move (Rock/Paper/Scissors): "
   player <- input
-  putStrLn ("Your choice is: " ++ show (player))
-  computer <- randMove
-  putStrLn ("Computer's choice is: " ++ show (computer))
-  score (compare player computer)
+  catch (do
+            let parsedInput = show player
+            putStrLn parsedInput
+            computer <- randMove
+            putStrLn ("Computer's choice is: " ++ show (computer))
+            score (compare player computer)
+        )
+        (\(err:: SomeException) -> do
+            putStrLn "Please re-enter your choice!"
+        )
