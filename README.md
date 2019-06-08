@@ -8,3 +8,4 @@
 * Quicksort.hs: Quicksort algorithm implementation, [Wiki](https://www.wikiwand.com/en/Quicksort).
 * NumberTheory.hs: Number-theoric functions.
 * RockPaperScissors.hs: Rock-Paper-Scissors game.
+* Monte Carlo Pi: Approximate Pi with Monte Carlo Simulation. Compile the file and use it from commandline like ```./ApproximationPi 10000```.
